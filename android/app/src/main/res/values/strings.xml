@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Tyrolien</string>
+    <string name="title_activity_main">Tyrolien</string>
+    <string name="package_name">fr.ensai.eleve.tyrolien</string>
+    <string name="custom_url_scheme">fr.ensai.eleve.tyrolien</string>
+</resources>

@@ -1,0 +1,13 @@
+{
+	"appId": "fr.ensai.eleve.tyrolien",
+	"appName": "Tyrolien",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "www",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		}
+	},
+	"cordova": {}
+}

@@ -79,7 +79,7 @@ framework7 assets --ui
 
 ## Capacitor Assets
 
-Capacitor assets are located in `resources` folder which is intended to be used with `cordova-res` tool. To generate  mobile apps assets run in terminal:
+Capacitor assets are located in `resources` folder which is intended to be used with `cordova-res` tool. To generate mobile apps assets run in terminal:
 ```
 npx cordova-res
 ```

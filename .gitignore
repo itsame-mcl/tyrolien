@@ -50,3 +50,6 @@ resources/windows/splash
 
 # Production build
 www/
+
+
+src/assets/data/articles.json

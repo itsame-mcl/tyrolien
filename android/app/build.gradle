@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    namespace 'fr.ensai.eleve.tyrolien'
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "fr.ensai.eleve.tyrolien"

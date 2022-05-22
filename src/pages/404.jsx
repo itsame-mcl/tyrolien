@@ -5,8 +5,8 @@ const NotFoundPage = () => (
   <Page>
     <Navbar title="Not found" backLink="Back" />
     <Block strong>
-      <p>Sorry</p>
-      <p>Requested content not found.</p>
+      <p>Erreur</p>
+      <p>Impossible d'accéder à la fonctionnalité demandée.</p>
     </Block>
   </Page>
 );

@@ -3,6 +3,7 @@ import store from '../js/store';
 import HomePage from '../pages/home.jsx';
 import QuestionPage from '../pages/question.jsx';
 import AnswerPage from '../pages/answer.jsx';
+import EndPage from '../pages/end.jsx';
 import OptionsPage from '../pages/options.jsx';
 import NotFoundPage from '../pages/404.jsx';
 
@@ -43,10 +44,10 @@ var routes = [
           store.dispatch("setQuestionActuelle", {value: store.getters.question_actuelle.value + 1});
           resolve_component = QuestionPage;
         } else {
-          resolve_component = NotFoundPage;
+          resolve_component = EndPage;
         }
       } else {
-        resolve_component = NotFoundPage;
+        resolve_component = EndPage;
       }
       app.preloader.hide();
       resolve(

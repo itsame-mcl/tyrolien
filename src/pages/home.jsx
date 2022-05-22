@@ -29,7 +29,7 @@ const HomePage = () => (
         <Row nogap>
             <Col width="25"></Col>
             <Col width="50">
-                <Button fill raised>Meilleurs Scores</Button>
+                <Button fill raised href="/high_scores/">Meilleurs Scores</Button>
             </Col>
             <Col width="25"></Col>
         </Row>

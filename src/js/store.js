@@ -54,6 +54,9 @@ const store = createStore({
     },
     question_actuelle({state}) {
       return state.question_actuelle;
+    },
+    erreur_actuelle({state}) {
+      return state.erreur_actuelle;
     }
   }
 })

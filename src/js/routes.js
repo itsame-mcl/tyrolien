@@ -2,10 +2,8 @@ import store from '../js/store';
 
 import HomePage from '../pages/home.jsx';
 import QuestionPage from '../pages/question.jsx';
+import AnswerPage from '../pages/answer.jsx';
 import OptionsPage from '../pages/options.jsx';
-
-import DynamicRoutePage from '../pages/dynamic-route.jsx';
-import RequestAndLoad from '../pages/request-and-load.jsx';
 import NotFoundPage from '../pages/404.jsx';
 
 var routes = [
@@ -30,60 +28,37 @@ var routes = [
     },
   },
   {
+    path: '/answer/:proposition/',
+    component: AnswerPage,
+  },
+  {
+    path: '/next/',
+    async: function ({ router, resolve }) {
+      var app = router.app;
+      app.preloader.show();
+      let resolve_component = null;
+      router.clearPreviousHistory();
+      if (store.getters.erreur_actuelle.value <= store.getters.erreur_maximum.value) {
+        if (store.getters.question_actuelle.value < store.getters.nombre_questions.value) {
+          store.dispatch("setQuestionActuelle", {value: store.getters.question_actuelle.value + 1});
+          resolve_component = QuestionPage;
+        } else {
+          resolve_component = NotFoundPage;
+        }
+      } else {
+        resolve_component = NotFoundPage;
+      }
+      app.preloader.hide();
+      resolve(
+          {
+            component: resolve_component,
+          }
+      )
+    },
+  },
+  {
     path: '/options/',
     component: OptionsPage,
-  },
-
-  {
-    path: '/dynamic-route/blog/:blogId/post/:postId/',
-    component: DynamicRoutePage,
-  },
-  {
-    path: '/request-and-load/user/:userId/',
-    async: function ({ router, to, resolve }) {
-      // App instance
-      var app = router.app;
-
-      // Show Preloader
-      app.preloader.show();
-
-      // User ID from request
-      var userId = to.params.userId;
-
-      // Simulate Ajax Request
-      setTimeout(function () {
-        // We got user data from request
-        var user = {
-          firstName: 'Vladimir',
-          lastName: 'Kharlampidi',
-          about: 'Hello, i am creator of Framework7! Hope you like it!',
-          links: [
-            {
-              title: 'Framework7 Website',
-              url: 'http://framework7.io',
-            },
-            {
-              title: 'Framework7 Forum',
-              url: 'http://forum.framework7.io',
-            },
-          ]
-        };
-        // Hide Preloader
-        app.preloader.hide();
-
-        // Resolve route to load page
-        resolve(
-          {
-            component: RequestAndLoad,
-          },
-          {
-            props: {
-              user: user,
-            }
-          }
-        );
-      }, 1000);
-    },
   },
   {
     path: '(.*)',

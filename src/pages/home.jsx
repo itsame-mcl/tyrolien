@@ -36,7 +36,7 @@ const HomePage = () => (
         <Row nogap>
             <Col width="25"></Col>
             <Col width="50">
-                <Button fill raised>Options</Button>
+                <Button fill raised href="/options/">Options</Button>
             </Col>
             <Col width="25"></Col>
         </Row>

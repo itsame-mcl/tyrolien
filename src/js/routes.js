@@ -1,6 +1,6 @@
 
 import HomePage from '../pages/home.jsx';
-import AboutPage from '../pages/about.jsx';
+import OptionsPage from '../pages/options.jsx';
 import FormPage from '../pages/form.jsx';
 
 
@@ -14,8 +14,8 @@ var routes = [
     component: HomePage,
   },
   {
-    path: '/about/',
-    component: AboutPage,
+    path: '/options/',
+    component: OptionsPage,
   },
   {
     path: '/form/',

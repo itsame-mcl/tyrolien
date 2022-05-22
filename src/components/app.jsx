@@ -44,7 +44,7 @@ const MyApp = () => {
       capacitorApp.init(f7);
     }
     // Call F7 APIs here
-    store.dispatch("loadCatalogue", {path: "../assets/data/articles.json"});
+    store.dispatch("loadCatalogue", {path: "/data/articles.json"});
   });
 
   return (

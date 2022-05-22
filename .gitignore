@@ -52,4 +52,4 @@ resources/windows/splash
 www/
 
 
-src/assets/data/articles.json
+public/data/articles.json

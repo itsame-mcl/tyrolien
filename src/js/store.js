@@ -1,15 +1,19 @@
 
 import { createStore } from 'framework7/lite';
+import _, {sortBy, sample} from 'underscore';
 
 const store = createStore({
   state: {
     catalogue : [],
     nombre_questions : 3,
     erreur_maximum : 25,
-    articles_ordonnes : true
+    articles_ordonnes : true,
+    questions : [],
+    question_actuelle : null,
+    erreur_actuelle : null
   },
   actions: {
-    loadCatalogue({ state }, {path}) {
+    loadCatalogue({state}, {path}) {
       fetch(path).then(res => res.json()).then(catalogue => state.catalogue = catalogue);
     },
     setNombreQuestions({state}, {value}) {
@@ -20,12 +24,22 @@ const store = createStore({
     },
     setArticlesOrdonnes({state}, {value}) {
       state.articles_ordonnes = value;
+    },
+    pickQuestions({state}) {
+      let questions_set = sample(state.catalogue, state.nombre_questions);
+      if(state.articles_ordonnes) {
+        questions_set = sortBy(questions_set, (item) => item.price.amount)
+      }
+      state.questions = questions_set;
+    },
+    setQuestionActuelle({state}, {value}) {
+      state.question_actuelle = value;
+    },
+    setErreurActuelle({state}, {value}) {
+      state.erreur_actuelle = value;
     }
   },
   getters: {
-    catalogue({ state }) {
-      return state.catalogue;
-    },
     nombre_questions({state}) {
       return state.nombre_questions;
     },
@@ -34,6 +48,12 @@ const store = createStore({
     },
     articles_ordonnes({state}) {
       return state.articles_ordonnes;
+    },
+    article_actuel({state}) {
+      return state.questions[state.question_actuelle - 1];
+    },
+    question_actuelle({state}) {
+      return state.question_actuelle;
     }
   }
 })

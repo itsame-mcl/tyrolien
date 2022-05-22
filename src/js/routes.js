@@ -1,8 +1,8 @@
+import store from '../js/store';
 
 import HomePage from '../pages/home.jsx';
+import QuestionPage from '../pages/question.jsx';
 import OptionsPage from '../pages/options.jsx';
-import FormPage from '../pages/form.jsx';
-
 
 import DynamicRoutePage from '../pages/dynamic-route.jsx';
 import RequestAndLoad from '../pages/request-and-load.jsx';
@@ -14,14 +14,25 @@ var routes = [
     component: HomePage,
   },
   {
+    path: '/new_game/',
+    async: function ({ router, resolve }) {
+      var app = router.app;
+      app.preloader.show();
+      store.dispatch("pickQuestions");
+      store.dispatch("setQuestionActuelle", {value: 1});
+      store.dispatch("setErreurActuelle", {value: 0});
+      app.preloader.hide();
+      resolve(
+          {
+            component: QuestionPage,
+          }
+      )
+    },
+  },
+  {
     path: '/options/',
     component: OptionsPage,
   },
-  {
-    path: '/form/',
-    component: FormPage,
-  },
-
 
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',

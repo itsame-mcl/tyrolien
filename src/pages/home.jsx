@@ -22,7 +22,7 @@ const HomePage = () => (
         <Row nogap>
             <Col width="25"></Col>
             <Col width="50">
-                <Button fill raised>Jouer</Button>
+                <Button fill raised href="/new_game/">Jouer</Button>
             </Col>
             <Col width="25"></Col>
         </Row>

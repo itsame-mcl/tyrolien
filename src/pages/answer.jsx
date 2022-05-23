@@ -20,6 +20,7 @@ const AnswerPage = (props) => {
     const question = store.getters.article_actuel.value;
     const erreur_maximum = useStore("erreur_maximum");
     const [erreur_affichee, setErreurAffichee] = useState(store.getters.erreur_actuelle.value);
+    const [reponse_affichee, setReponseAffichee] = useState(parseInt(props.proposition) + (question.price.amount % 1));
     const [iterations, setIterations] = useState(-1);
     const [ready, setReady] = useState(false);
     const isInitialMount = useRef(true);
@@ -47,6 +48,11 @@ const AnswerPage = (props) => {
         } else {
             if (iterations > 0) {
                 const timer = setTimeout(() => {
+                    if (reponse_affichee < question.price.amount){
+                        setReponseAffichee(reponse_affichee + 1);
+                    } else {
+                        setReponseAffichee(reponse_affichee - 1);
+                    }
                     setErreurAffichee(erreur_affichee + 1);
                     setIterations(iterations - 1);
                 }, 1000);
@@ -59,6 +65,7 @@ const AnswerPage = (props) => {
                 }
                 else {
                     criSound.play();
+                    setReponseAffichee(question.price.amount);
                 }
                 setReady(true);
             }
@@ -105,8 +112,7 @@ const AnswerPage = (props) => {
             </Block>
             <Block strong>
                 <Row>{question.title}</Row>
-                <Row>{"Votre proposition : " + props.proposition + "." + Math.round((question.price.amount * 100) % 100) + " €"}</Row>
-                <Row>{"Bonne réponse : " + question.price.amount + " €"}</Row>
+                <Row><span style={{fontSize: "x-large"}}>{reponse_affichee.toFixed(2) + " €"}</span></Row>
             </Block>
             <Button fill raised href="/next/" style={{ display: ready ? "block" : "none" }}>Continuer</Button>
         </Page>

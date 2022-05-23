@@ -20,7 +20,7 @@ const QuestionPage = () => {
                     <Col width="25">
                         <Stepper value={answer} min={10} max={99} step={1} autorepeat={true}
                                  onStepperChange={(e) => setAnswer(e)}/>
-                        {"." + (question.price.amount * 100) % 100 + " €"}
+                        {"." + Math.round((question.price.amount * 100) % 100) + " €"}
                     </Col>
                     <Col width="50">
                         <Button fill raised href={"/answer/" + answer + "/"}>Valider</Button>

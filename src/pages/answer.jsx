@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import {Howl, Howler} from 'howler';
 import {
     Page,
     Navbar,
@@ -22,12 +23,20 @@ const AnswerPage = (props) => {
     const [iterations, setIterations] = useState(-1);
     const [ready, setReady] = useState(false);
     const isInitialMount = useRef(true);
+    const correctSound = new Howl({src: ["/sounds/correct.wav"]});
+    const erreurSound = new Howl({src: ["/sounds/erreur.wav"]});
+    const criSound = new Howl({src: ["/sounds/cri.wav"]});
+    const tyrolienSong = new Howl({src: ["/music/yodel-long.mp3"]});
 
     useEffect(() => {
         const timer = setTimeout(() => {
             const erreur = Math.abs(Math.floor(question.price.amount) - parseInt(props.proposition));
             setIterations(Math.min(erreur, erreur_maximum-erreur_affichee+1));
             store.dispatch("setErreurActuelle", { value: store.getters.erreur_actuelle.value + erreur });
+            if (erreur > 0) {
+                erreurSound.play();
+                tyrolienSong.play();
+            }
         }, 2000);
         return () => clearTimeout(timer);
     }, [])
@@ -44,6 +53,13 @@ const AnswerPage = (props) => {
                 return () => clearTimeout(timer);
             }
             else {
+                Howler.stop();
+                if(erreur_affichee <= erreur_maximum) {
+                    correctSound.play();
+                }
+                else {
+                    criSound.play();
+                }
                 setReady(true);
             }
         }

@@ -10,7 +10,8 @@ const store = createStore({
     articles_ordonnes : true,
     questions : [],
     question_actuelle : null,
-    erreur_actuelle : null
+    erreur_actuelle : null,
+    afficher_reponses : true
   },
   actions: {
     loadCatalogue({state}, {path}) {
@@ -37,6 +38,9 @@ const store = createStore({
     },
     setErreurActuelle({state}, {value}) {
       state.erreur_actuelle = value;
+    },
+    setAfficherReponses({ state }, { value }) {
+      state.afficher_reponses = value;
     }
   },
   getters: {

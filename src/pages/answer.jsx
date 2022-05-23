@@ -30,6 +30,7 @@ const AnswerPage = (props) => {
     const erreurSound = new Howl({src: ["/sounds/erreur.wav"]});
     const criSound = new Howl({src: ["/sounds/cri.wav"]});
     const tyrolienSong = new Howl({src: ["/music/yodel-long.mp3"]});
+    const tyrolienShortSong = new Howl({src: ["/music/yodel-court.mp3"]});
 
     const hapticsImpactMedium = async () => {
         await Haptics.impact({ style: ImpactStyle.Medium });
@@ -45,7 +46,11 @@ const AnswerPage = (props) => {
             store.dispatch("setErreurActuelle", { value: store.getters.erreur_actuelle.value + erreur });
             if (erreur > 0) {
                 erreurSound.play();
-                tyrolienSong.play();
+                if(erreur_maximum-erreur_affichee>10) {
+                    tyrolienSong.play();
+                } else {
+                    tyrolienShortSong.play();
+                }
             }
         }, 2000);
         return () => clearTimeout(timer);

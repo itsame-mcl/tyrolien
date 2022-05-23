@@ -57,6 +57,9 @@ const store = createStore({
     },
     erreur_actuelle({state}) {
       return state.erreur_actuelle;
+    },
+    afficher_reponses({ state }) {
+      return state.afficher_reponses;
     }
   }
 })

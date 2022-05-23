@@ -1,12 +1,13 @@
 import React from 'react';
 import {
   Page,
+  Icon,
   Navbar,
   NavTitle,
   Block,
   Row,
   Col,
-  Button
+  Button,
 } from 'framework7-react';
 
 const HomePage = () => (
@@ -22,21 +23,21 @@ const HomePage = () => (
       <Row nogap>
         <Col width="25"></Col>
         <Col width="50">
-          <Button fill raised href="/new_game/">Jouer</Button>
+          <Button fill raised href="/new_game/"><Icon ios="f7:play_circle_fill" aurora="f7:play_circle_fill" md="material:play_circle_fill"></Icon>Jouer</Button>
         </Col>
         <Col width="25"></Col>
       </Row>
       <Row nogap>
         <Col width="25"></Col>
         <Col width="50">
-          <Button fill raised href="/high_scores/"><span class="material-icons">leaderboard</span>Meilleurs Scores</Button>
+          <Button fill raised href="/high_scores/"><Icon ios="f7:sort_up" aurora="f7:sort_up" md="material:leaderboard"></Icon>Meilleurs Scores</Button>
         </Col>
         <Col width="25"></Col>
       </Row>
       <Row nogap>
         <Col width="25"></Col>
         <Col width="50">
-          <Button fill raised href="/options/"><span class="material-icons">settings</span>Options</Button>
+          <Button fill raised href="/options/"><Icon ios="f7:gear" aurora="f7:gear" md="material:settings"></Icon>Options</Button>
         </Col>
         <Col width="25"></Col>
       </Row>

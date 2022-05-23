@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
 import {Howl, Howler} from 'howler';
 import {
     Page,
@@ -24,10 +25,18 @@ const AnswerPage = (props) => {
     const [iterations, setIterations] = useState(-1);
     const [ready, setReady] = useState(false);
     const isInitialMount = useRef(true);
+
     const correctSound = new Howl({src: ["/sounds/correct.wav"]});
     const erreurSound = new Howl({src: ["/sounds/erreur.wav"]});
     const criSound = new Howl({src: ["/sounds/cri.wav"]});
     const tyrolienSong = new Howl({src: ["/music/yodel-long.mp3"]});
+
+    const hapticsImpactMedium = async () => {
+        await Haptics.impact({ style: ImpactStyle.Medium });
+    };
+    const hapticsVibrate = async () => {
+        await Haptics.vibrate();
+    };
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -54,6 +63,7 @@ const AnswerPage = (props) => {
                         setReponseAffichee(reponse_affichee - 1);
                     }
                     setErreurAffichee(erreur_affichee + 1);
+                    hapticsImpactMedium();
                     setIterations(iterations - 1);
                 }, 1000);
                 return () => clearTimeout(timer);
@@ -65,6 +75,7 @@ const AnswerPage = (props) => {
                 }
                 else {
                     criSound.play();
+                    hapticsVibrate();
                     setReponseAffichee(question.price.amount);
                 }
                 setReady(true);

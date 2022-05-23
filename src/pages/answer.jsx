@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
     Page,
     Navbar,
@@ -19,17 +19,35 @@ const AnswerPage = (props) => {
     const question = store.getters.article_actuel.value;
     const erreur_maximum = useStore("erreur_maximum");
     const [erreur_affichee, setErreurAffichee] = useState(store.getters.erreur_actuelle.value);
+    const [iterations, setIterations] = useState(-1);
     const [ready, setReady] = useState(false);
+    const isInitialMount = useRef(true);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             const erreur = Math.abs(Math.floor(question.price.amount) - parseInt(props.proposition));
-            setErreurAffichee(store.getters.erreur_actuelle.value + erreur);
+            setIterations(Math.min(erreur, erreur_maximum-erreur_affichee+1));
             store.dispatch("setErreurActuelle", { value: store.getters.erreur_actuelle.value + erreur });
-            setReady(true);
         }, 2000);
         return () => clearTimeout(timer);
     }, [])
+
+    useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+        } else {
+            if (iterations > 0) {
+                const timer = setTimeout(() => {
+                    setErreurAffichee(erreur_affichee + 1);
+                    setIterations(iterations - 1);
+                }, 1000);
+                return () => clearTimeout(timer);
+            }
+            else {
+                setReady(true);
+            }
+        }
+    }, [iterations])
 
     return (
         <Page>

@@ -32,6 +32,9 @@ const AnswerPage = (props) => {
     const tyrolienSong = new Howl({src: ["/music/yodel-long.mp3"]});
     const tyrolienShortSong = new Howl({src: ["/music/yodel-court.mp3"]});
 
+    const hapticsImpactHeavy = async () => {
+        await Haptics.impact({ style: ImpactStyle.Heavy });
+    };
     const hapticsImpactMedium = async () => {
         await Haptics.impact({ style: ImpactStyle.Medium });
     };
@@ -67,8 +70,13 @@ const AnswerPage = (props) => {
                     } else {
                         setReponseAffichee(reponse_affichee - 1);
                     }
+
                     setErreurAffichee(erreur_affichee + 1);
-                    hapticsImpactMedium();
+                    if(erreur_maximum-erreur_affichee>10) {
+                        hapticsImpactMedium();
+                    } else {
+                        hapticsImpactHeavy();
+                    }
                     setIterations(iterations - 1);
                 }, 1000);
                 return () => clearTimeout(timer);

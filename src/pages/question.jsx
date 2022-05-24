@@ -15,9 +15,13 @@ const QuestionPage = () => {
                     {question.title}
                 </Row>
             </Block>
-            <Row>
-                <img src={"images/" + question._id.$oid + ".jpg"} height={500}/>
-            </Row>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}>
+                <img src={"images/" + question._id.$oid + ".jpg"} height={500} />
+            </div>
             <Row>
                 <Col width="5"></Col>
                 <Col width="25">

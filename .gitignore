@@ -53,4 +53,4 @@ www/
 
 # Ignore Sensitive Resources
 public/data/*
-public/images/*
+public/images/*.jpg

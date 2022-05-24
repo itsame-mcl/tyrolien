@@ -6,6 +6,7 @@ import {
     Navbar,
     Block,
     Row,
+    Col,
     Button,
     useStore
 } from 'framework7-react';
@@ -95,7 +96,9 @@ const AnswerPage = (props) => {
         <Page>
             <Navbar title={"Objet " + store.getters.question_actuelle.value + " / " + store.getters.nombre_questions.value}
                 backLink="Back" backLinkUrl="/" backLinkForce={true} />
-            <Tyrolien actuel={erreur_affichee} max={erreur_maximum} />
+            <Row>
+                <Col width="100"><Tyrolien actuel={erreur_affichee} max={erreur_maximum} /></Col>
+            </Row>
             <Block strong>
                 <Row>{question.title}</Row>
                 <Row><span style={{fontSize: "x-large"}}>{reponse_affichee.toFixed(2) + " €"}</span></Row>

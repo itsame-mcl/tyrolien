@@ -15,6 +15,9 @@ const QuestionPage = () => {
                     {question.title}
                 </Row>
             </Block>
+            <Row>
+                <img src={"images/"+question._id.$oid+".jpg"}/>
+            </Row>
                 <Row>
                     <Col width="5"></Col>
                     <Col width="25">

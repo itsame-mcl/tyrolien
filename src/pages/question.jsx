@@ -26,8 +26,8 @@ const QuestionPage = () => {
                 <Col width="5"></Col>
                 <Col width="25">
                     <Stepper value={answer} min={10} max={99} step={1} autorepeat={true}
-                        onStepperChange={(e) => setAnswer(e)} />
-                    {"." + Math.round((question.price.amount * 100) % 100) + " €"}
+                             manualInputMode={true} decimalPoint={0} onStepperChange={(e) => setAnswer(e)} />
+                    <span style={{fontSize: "x-large"}}>{"." + (question.price.amount % 1).toFixed(2).slice(-2) + " €"}</span>
                 </Col>
                 <Col width="50">
                     <Button fill raised href={"/answer/" + answer + "/"}>Valider</Button>

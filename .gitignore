@@ -51,5 +51,6 @@ resources/windows/splash
 # Production build
 www/
 
-
-public/data/articles.json
+# Ignore Sensitive Resources
+public/data/*
+public/images/*

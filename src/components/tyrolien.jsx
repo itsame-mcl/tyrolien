@@ -43,7 +43,7 @@ const Tyrolien = (props) => {
     return(
         <div style={{position: "relative", top: 0, left: 0}}>
             <img style={{position: "relative", top: 0, left: 0}} heigth={componentDimension.compHeight} width={componentDimension.compWidth} z-index={1} src="/images/tyrolien.png" />
-            <img style={style} z-index={2} heigth={componentDimension.compHeight * 0.1} width={componentDimension.compWidth * 0.05} src="/images/personnage.png" />
+            <img class="tyrolien" style={style} z-index={2} heigth={componentDimension.compHeight * 0.1} width={componentDimension.compWidth * 0.05} src="/images/personnage.png" />
         </div>
     )
 }

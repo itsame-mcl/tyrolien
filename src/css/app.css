@@ -7,3 +7,9 @@
 }
 
 /* Your app custom styles here */
+.tyrolien {
+  transition-property: top, left, transform;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+}
